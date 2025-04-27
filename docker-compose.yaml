@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   n8n:
     image: docker.n8n.io/n8nio/n8n
@@ -7,7 +8,9 @@ services:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
-    command: start --tunnel
+    environment:
+      - WEBHOOK_URL=http://localhost:5678
+    command: start
 
 volumes:
   n8n_data:
